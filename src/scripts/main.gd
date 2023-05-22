@@ -188,7 +188,7 @@ func _on_msaa_option_button_item_selected(index):
 var settings := {
 	"positional_shadow_atlas_size": [1024, 2048, 4096, 8192],
 	"pos_soft_shadow_filter_quality": [0, 2, 4, 5],
-	"directional_shadow_atlas_size": [2048, 4096, 8192, 16384],
+	"directional_shadow_atlas_size": [2048, 2048, 4096, 8192],
 	"dir_soft_shadow_filter_quality": [0, 2, 4, 5],
 	"ray_count": [
 		RenderingServer.ENV_SDFGI_RAY_COUNT_16,
