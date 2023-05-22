@@ -14,13 +14,13 @@ func _ready():
 	var tween = get_tree().create_tween()
 	tween.tween_property($WorldEnvironment.environment, "adjustment_brightness", 1, 3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_delay(0.4)
 	tween.parallel().tween_method(func(v):AudioServer.set_bus_volume_db(0, v), -24, 0, 3)
-	
+
 	_on_general_quality_option_button_item_selected(1)
 	%MSAAOptionButton.add_item("Disabled", 0)
 	%MSAAOptionButton.add_item("2x", 1)
 	%MSAAOptionButton.add_item("4x", 2)
 	%MSAAOptionButton.add_item("8x", 3)
-	%MSAAOptionButton.select(1)
+	%MSAAOptionButton.select(0)
 	%GeneralQualityOptionButton.add_item("Low", 0)
 	%GeneralQualityOptionButton.add_item("Medium", 1)
 	%GeneralQualityOptionButton.add_item("High", 2)
@@ -103,7 +103,7 @@ func _on_mode_switch_button_pressed():
 		black_bar_tween.parallel().tween_callback(to_player).set_delay(0.2)
 		black_bar_tween.tween_property($WorldEnvironment.environment, "adjustment_brightness", 1, 1.2)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-		
+
 	else:
 		get_tree().get_nodes_in_group("player")[0].is_active = false
 		if black_bar_tween:
@@ -187,14 +187,9 @@ func _on_msaa_option_button_item_selected(index):
 
 var settings := {
 	"positional_shadow_atlas_size": [1024, 2048, 4096, 8192],
-	"pos_soft_shadow_filter_quality": [0, 2, 4, 5],
-	"directional_shadow_atlas_size": [2048, 4096, 8192, 16384],
-	"dir_soft_shadow_filter_quality": [0, 2, 4, 5],
-	"ray_count": [
-		RenderingServer.ENV_SDFGI_RAY_COUNT_16,
-		RenderingServer.ENV_SDFGI_RAY_COUNT_32,
-		RenderingServer.ENV_SDFGI_RAY_COUNT_64,
-		RenderingServer.ENV_SDFGI_RAY_COUNT_128],
+	"pos_soft_shadow_filter_quality": [1, 2, 3, 4],
+	"directional_shadow_atlas_size": [1024, 2048, 4096, 8192],
+	"dir_soft_shadow_filter_quality": [1, 2, 3, 4],
 	"voxel_gi": [
 		RenderingServer.VOXEL_GI_QUALITY_LOW,
 		RenderingServer.VOXEL_GI_QUALITY_LOW,
@@ -210,11 +205,10 @@ var settings := {
 }
 
 func _on_general_quality_option_button_item_selected(index):
-	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", settings.pos_soft_shadow_filter_quality[index])
-	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", settings.dir_soft_shadow_filter_quality[index])
+	RenderingServer.positional_soft_shadow_filter_set_quality(settings.pos_soft_shadow_filter_quality[index])
+	RenderingServer.directional_soft_shadow_filter_set_quality(settings.dir_soft_shadow_filter_quality[index])
 	RenderingServer.gi_set_use_half_resolution(settings.gi_half_res[index])
 	RenderingServer.directional_shadow_atlas_set_size(settings.directional_shadow_atlas_size[index], true)
-	RenderingServer.environment_set_sdfgi_ray_count(settings.ray_count[index])
 	RenderingServer.voxel_gi_set_quality(settings.voxel_gi[index])
 	get_viewport().positional_shadow_atlas_size = settings.positional_shadow_atlas_size[index]
 
@@ -245,7 +239,6 @@ func _on_credits_button_pressed():
 
 func _on_gi_checkbox_pressed():
 	$WorldEnvironment.environment.ssil_enabled = %GICheckbox.button_pressed
-	$WorldEnvironment.environment.sdfgi_enabled = %GICheckbox.button_pressed
 
 
 

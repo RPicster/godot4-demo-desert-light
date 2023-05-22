@@ -1,10 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://dtdv4se427gmh"]
+[gd_scene load_steps=42 format=3 uid="uid://dtdv4se427gmh"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2gqxl"]
 [ext_resource type="Environment" uid="uid://cfk37fm4ah0d3" path="res://assets/resources/raffa_environment.tres" id="2_dhjut"]
 [ext_resource type="PackedScene" uid="uid://bjruigidscd15" path="res://scenes/DesertCaveScene.tscn" id="3_jw8rf"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/Player/Player.tscn" id="4_hhijd"]
-[ext_resource type="VoxelGIData" uid="uid://0katqpbej48n" path="res://baked/voxel_gi_bake.tres" id="5_p2mn1"]
+[ext_resource type="VoxelGIData" uid="uid://bkujmkio4oe3q" path="res://baked/voxel_gi_bake.res" id="5_fllkk"]
 [ext_resource type="AudioStream" uid="uid://tw6e63fufm2q" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_drones.mp3" id="6_ai0gb"]
 [ext_resource type="AudioStream" uid="uid://djr485yl6haam" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_chimes.mp3" id="7_58uim"]
 [ext_resource type="AudioStream" uid="uid://btv1xaedtyl6u" path="res://assets/audio/WhatInTheSound_Wind.mp3" id="8_6v0mo"]
@@ -83,6 +83,12 @@ size = Vector2(0.06, 0.06)
 albedo = Color(0.396078, 0.376471, 0.27451, 1)
 height_falloff = 0.318641
 edge_fade = 0.492456
+
+[sub_resource type="BoxMesh" id="BoxMesh_y1te5"]
+size = Vector3(20, 4, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kb7n4"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Shader" id="Shader_vnis5"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.3.stable's StandardMaterial3D.
@@ -492,9 +498,13 @@ light_energy = 0.0
 light_indirect_energy = 0.7
 light_volumetric_fog_energy = 2.0
 shadow_enabled = true
-shadow_bias = 0.01
-shadow_blur = 0.2
-directional_shadow_max_distance = 150.0
+shadow_bias = 0.04
+shadow_blur = 3.5
+directional_shadow_split_1 = 0.2
+directional_shadow_split_2 = 0.3
+directional_shadow_split_3 = 0.6
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 90.0
 
 [node name="Scenery" type="Node3D" parent="."]
 
@@ -537,9 +547,15 @@ polygon = PackedVector2Array(-16.3829, 10.4146, -0.254908, 5.42844, 19.3756, 5.0
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 5, -1, 30)
 
 [node name="VoxelGI" type="VoxelGI" parent="Scenery"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6334, 25.7113, 6.19588)
-size = Vector3(100, 65, 150)
-data = ExtResource("5_p2mn1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6334, 25.7113, 15.1959)
+size = Vector3(95, 65, 110)
+data = ExtResource("5_fllkk")
+
+[node name="LightLeakBlock" type="MeshInstance3D" parent="Scenery"]
+transform = Transform3D(0.960832, -0.258408, -0.100131, 0.27713, 0.895922, 0.347164, 0, -0.361315, 0.932444, -5.31389, 40.1137, 19.8693)
+mesh = SubResource("BoxMesh_y1te5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_kb7n4")
 
 [node name="DoorLights" type="Node3D" parent="Scenery"]
 
@@ -547,16 +563,22 @@ data = ExtResource("5_p2mn1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1329, 9.3132, -20.6909)
 light_color = Color(0, 0.831373, 1, 1)
 light_energy = 30.0
-light_size = 0.5
+light_indirect_energy = 0.05
+light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.2
+shadow_normal_bias = 2.5
+shadow_blur = 4.0
 omni_range = 20.0
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="Scenery/DoorLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1329, 8.5567, -30.7985)
 light_color = Color(0, 0.713726, 1, 1)
 light_energy = 200.0
-light_size = 1.0
+light_indirect_energy = 0.05
+light_bake_mode = 1
 shadow_enabled = true
+shadow_blur = 2.0
 omni_range = 20.0
 
 [node name="Fireflies" type="GPUParticles3D" parent="Scenery"]
@@ -615,7 +637,7 @@ libraries = {
 
 [node name="CinematicCam" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.988483, 0.0669845, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
+transform = Transform3D(0.988483, 0.0669846, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
 current = true
 fov = 70.0
 far = 400.0
@@ -1161,7 +1183,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 button_pressed = true
-text = "Indirect Illum. (SSIL + SDFGI)"
+text = "Indirect Illumination (SSIL)"
 
 [node name="VolumentricFogCheckbox" type="CheckButton" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]
 unique_name_in_owner = true
@@ -1186,6 +1208,7 @@ theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+button_pressed = true
 text = "Temporal Anti-Aliasing"
 
 [node name="RenderResolutionLabel" type="Label" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]

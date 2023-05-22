@@ -19,6 +19,7 @@ sky_material = SubResource("ProceduralSkyMaterial_yjc35")
 
 [resource]
 background_mode = 2
+background_energy_multiplier = 0.1
 sky = SubResource("Sky_p5r50")
 ambient_light_source = 1
 ambient_light_sky_contribution = 0.0
@@ -26,7 +27,6 @@ reflected_light_source = 1
 tonemap_mode = 2
 tonemap_exposure = 0.35
 tonemap_white = 8.0
-ssr_enabled = true
 ssao_enabled = true
 ssao_radius = 0.86
 ssao_intensity = 20.0
@@ -35,9 +35,10 @@ ssao_light_affect = 0.65
 ssao_ao_channel_affect = 1.0
 ssil_enabled = true
 ssil_radius = 1.22
-sdfgi_enabled = true
 sdfgi_bounce_feedback = 1.5
 sdfgi_min_cell_size = 0.1
+sdfgi_cascade0_distance = 6.4
+sdfgi_max_distance = 102.4
 sdfgi_energy = 1.5
 glow_enabled = true
 glow_levels/1 = 0.5
