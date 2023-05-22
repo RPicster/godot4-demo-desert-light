@@ -1,5 +1,5 @@
 # Desert Light - A Godot 4 demo
-This is a short demo and test for the Global Illumination (SDFGI), Indirect Lighting (SSIL) and Volumentric Fog.
+This is a short demo and test for the Global Illumination (SDFGI), Indirect Lighting (SSIL) and Volumetric Fog.
 
 [![Video Link](http://img.youtube.com/vi/-LR6Rjx0hAI/0.jpg)](http://www.youtube.com/watch?v=-LR6Rjx0hAI "Preview Video")
 
@@ -10,7 +10,7 @@ This is a short demo and test for the Global Illumination (SDFGI), Indirect Ligh
 
 <kbd>3</kbd> - Pause/Play Day Cycle animation
 
-### In first person mode (<kbd>ESC</kbd>  First Person Mode):
+### In first person mode (<kbd>ESC</kbd> -> First Person Mode):
 <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> - Control Character
 
 <kbd>Space</kbd> - Jump
