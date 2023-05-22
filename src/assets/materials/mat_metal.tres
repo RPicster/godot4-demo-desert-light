@@ -9,9 +9,9 @@ seamless = true
 noise = SubResource("FastNoiseLite_vxph8")
 
 [resource]
-albedo_color = Color(0.670588, 0.631373, 0.521569, 1)
+albedo_color = Color(1, 0.878431, 0.792157, 1)
 metallic = 1.0
-roughness = 0.29
+roughness = 0.28
 rim_enabled = true
 clearcoat = 0.48
 clearcoat_roughness = 0.89

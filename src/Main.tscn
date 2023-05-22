@@ -535,18 +535,6 @@ polygon = PackedVector2Array(-16.3829, 10.4146, -0.254908, 5.42844, 19.3756, 5.0
 [node name="Player" parent="Scenery" instance=ExtResource("4_hhijd")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 5, -1, 30)
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="Scenery"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01397, 6.34817, 18.116)
-update_mode = 1
-max_distance = 80.0
-ambient_mode = 0
-
-[node name="ReflectionProbe2" type="ReflectionProbe" parent="Scenery"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01397, 6.34817, -9.92531)
-update_mode = 1
-max_distance = 80.0
-ambient_mode = 0
-
 [node name="VoxelGI" type="VoxelGI" parent="Scenery"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6334, 25.7113, 6.19588)
 size = Vector3(100, 65, 150)
