@@ -15,17 +15,17 @@ func _ready():
 	tween.tween_property($WorldEnvironment.environment, "adjustment_brightness", 1, 3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_delay(0.4)
 	tween.parallel().tween_method(func(v):AudioServer.set_bus_volume_db(0, v), -24, 0, 3)
 	
-	_on_general_quality_option_button_item_selected(1)
 	%MSAAOptionButton.add_item("Disabled", 0)
 	%MSAAOptionButton.add_item("2x", 1)
 	%MSAAOptionButton.add_item("4x", 2)
 	%MSAAOptionButton.add_item("8x", 3)
-	%MSAAOptionButton.select(1)
+	%MSAAOptionButton.select(0)
 	%GeneralQualityOptionButton.add_item("Low", 0)
 	%GeneralQualityOptionButton.add_item("Medium", 1)
 	%GeneralQualityOptionButton.add_item("High", 2)
 	%GeneralQualityOptionButton.add_item("Ultra", 3)
-	%GeneralQualityOptionButton.select(1)
+	%GeneralQualityOptionButton.select(2)
+	_on_general_quality_option_button_item_selected(2)
 
 
 func _physics_process(delta):

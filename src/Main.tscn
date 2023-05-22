@@ -4,7 +4,7 @@
 [ext_resource type="Environment" uid="uid://cfk37fm4ah0d3" path="res://assets/resources/raffa_environment.tres" id="2_dhjut"]
 [ext_resource type="PackedScene" uid="uid://bjruigidscd15" path="res://scenes/DesertCaveScene.tscn" id="3_jw8rf"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/Player/Player.tscn" id="4_hhijd"]
-[ext_resource type="VoxelGIData" uid="uid://0katqpbej48n" path="res://baked/voxel_gi_bake.tres" id="5_p2mn1"]
+[ext_resource type="VoxelGIData" uid="uid://dtwlpshcjqm64" path="res://baked/voxel_gi_bake.res" id="5_uxp4w"]
 [ext_resource type="AudioStream" uid="uid://tw6e63fufm2q" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_drones.mp3" id="6_ai0gb"]
 [ext_resource type="AudioStream" uid="uid://djr485yl6haam" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_chimes.mp3" id="7_58uim"]
 [ext_resource type="AudioStream" uid="uid://btv1xaedtyl6u" path="res://assets/audio/WhatInTheSound_Wind.mp3" id="8_6v0mo"]
@@ -539,7 +539,7 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 5, -1, 30)
 [node name="VoxelGI" type="VoxelGI" parent="Scenery"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6334, 25.7113, 6.19588)
 size = Vector3(100, 65, 150)
-data = ExtResource("5_p2mn1")
+data = ExtResource("5_uxp4w")
 
 [node name="DoorLights" type="Node3D" parent="Scenery"]
 
