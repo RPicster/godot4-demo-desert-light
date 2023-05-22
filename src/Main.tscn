@@ -1,10 +1,11 @@
-[gd_scene load_steps=40 format=3 uid="uid://dtdv4se427gmh"]
+[gd_scene load_steps=41 format=3 uid="uid://dtdv4se427gmh"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2gqxl"]
 [ext_resource type="Environment" uid="uid://cfk37fm4ah0d3" path="res://assets/resources/raffa_environment.tres" id="2_dhjut"]
 [ext_resource type="PackedScene" uid="uid://bjruigidscd15" path="res://scenes/DesertCaveScene.tscn" id="3_jw8rf"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/Player/Player.tscn" id="4_hhijd"]
 [ext_resource type="VoxelGIData" uid="uid://0katqpbej48n" path="res://baked/voxel_gi_bake.tres" id="5_p2mn1"]
+[ext_resource type="ArrayOccluder3D" uid="uid://clwf7dhpofbee" path="res://baked/OccludersMain.occ" id="6_5xsna"]
 [ext_resource type="AudioStream" uid="uid://tw6e63fufm2q" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_drones.mp3" id="6_ai0gb"]
 [ext_resource type="AudioStream" uid="uid://djr485yl6haam" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_chimes.mp3" id="7_58uim"]
 [ext_resource type="AudioStream" uid="uid://btv1xaedtyl6u" path="res://assets/audio/WhatInTheSound_Wind.mp3" id="8_6v0mo"]
@@ -570,6 +571,11 @@ interpolate = false
 visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
 process_material = SubResource("ParticleProcessMaterial_bvwt3")
 draw_pass_1 = SubResource("QuadMesh_w2ma6")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Scenery"]
+visible = false
+occluder = ExtResource("6_5xsna")
+bake_simplification_distance = 0.5
 
 [node name="Audio" type="Node3D" parent="."]
 

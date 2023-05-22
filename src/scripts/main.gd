@@ -199,17 +199,23 @@ var settings := {
 		RenderingServer.VOXEL_GI_QUALITY_LOW,
 		RenderingServer.VOXEL_GI_QUALITY_HIGH,
 		RenderingServer.VOXEL_GI_QUALITY_HIGH
+	],
+	"gi_half_res": [
+		true,
+		true,
+		false,
+		false,
 	]
 }
 
 func _on_general_quality_option_button_item_selected(index):
 	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", settings.pos_soft_shadow_filter_quality[index])
-	get_viewport().positional_shadow_atlas_size = settings.positional_shadow_atlas_size[index]
-	
 	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", settings.dir_soft_shadow_filter_quality[index])
+	RenderingServer.gi_set_use_half_resolution(settings.gi_half_res[index])
 	RenderingServer.directional_shadow_atlas_set_size(settings.directional_shadow_atlas_size[index], true)
 	RenderingServer.environment_set_sdfgi_ray_count(settings.ray_count[index])
 	RenderingServer.voxel_gi_set_quality(settings.voxel_gi[index])
+	get_viewport().positional_shadow_atlas_size = settings.positional_shadow_atlas_size[index]
 
 
 func _on_settings_button_pressed():
