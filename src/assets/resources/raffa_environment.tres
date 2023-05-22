@@ -27,7 +27,6 @@ reflected_light_source = 1
 tonemap_mode = 2
 tonemap_exposure = 0.35
 tonemap_white = 8.0
-ssr_enabled = true
 ssao_enabled = true
 ssao_radius = 0.86
 ssao_intensity = 10.0

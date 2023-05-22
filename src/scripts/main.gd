@@ -187,9 +187,9 @@ func _on_msaa_option_button_item_selected(index):
 
 var settings := {
 	"positional_shadow_atlas_size": [1024, 2048, 4096, 8192],
-	"pos_soft_shadow_filter_quality": [0, 2, 4, 5],
+	"pos_soft_shadow_filter_quality": [1, 2, 4, 4],
 	"directional_shadow_atlas_size": [2048, 2048, 4096, 8192],
-	"dir_soft_shadow_filter_quality": [0, 2, 4, 5],
+	"dir_soft_shadow_filter_quality": [1, 2, 4, 4],
 	"ray_count": [
 		RenderingServer.ENV_SDFGI_RAY_COUNT_16,
 		RenderingServer.ENV_SDFGI_RAY_COUNT_32,
@@ -210,8 +210,8 @@ var settings := {
 }
 
 func _on_general_quality_option_button_item_selected(index):
-	ProjectSettings.set_setting("rendering/lights_and_shadows/positional_shadow/soft_shadow_filter_quality", settings.pos_soft_shadow_filter_quality[index])
-	ProjectSettings.set_setting("rendering/lights_and_shadows/directional_shadow/soft_shadow_filter_quality", settings.dir_soft_shadow_filter_quality[index])
+	RenderingServer.positional_soft_shadow_filter_set_quality(settings.pos_soft_shadow_filter_quality[index])
+	RenderingServer.directional_soft_shadow_filter_set_quality(settings.dir_soft_shadow_filter_quality[index])
 	RenderingServer.gi_set_use_half_resolution(settings.gi_half_res[index])
 	RenderingServer.directional_shadow_atlas_set_size(settings.directional_shadow_atlas_size[index], true)
 	RenderingServer.environment_set_sdfgi_ray_count(settings.ray_count[index])

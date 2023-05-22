@@ -136,7 +136,6 @@ lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=3
 global_illumination/gi/use_half_resolution=true
 environment/ssao/quality=3
 environment/ssao/half_size=false
-environment/ssao/blur_passes=3
 anti_aliasing/screen_space_roughness_limiter/amount=0.5
 anti_aliasing/screen_space_roughness_limiter/limit=0.22
 scaling_3d/mode=1
