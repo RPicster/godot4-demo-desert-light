@@ -538,6 +538,7 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 5, -1, 30)
 
 [node name="VoxelGI" type="VoxelGI" parent="Scenery"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6334, 25.7113, 6.19588)
+subdiv = 2
 size = Vector3(100, 65, 150)
 data = ExtResource("5_uxp4w")
 
@@ -697,7 +698,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.329412, 0.329412, 0.329412, 1)
 theme_override_font_sizes/font_size = 11
-text = "v1.0.2"
+text = "v1.0.3"
 horizontal_alignment = 1
 
 [node name="ByRaffaLabel" type="Label" parent="UI/MainMenu/PanelContainer/UI"]
@@ -1150,19 +1151,6 @@ text = "MSAA"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GICheckbox" type="CheckButton" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.180392, 0.180392, 0.180392, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-button_pressed = true
-text = "Indirect Illum. (SSIL + SDFGI)"
-
 [node name="VolumentricFogCheckbox" type="CheckButton" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
@@ -1213,6 +1201,7 @@ theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0.596078, 0.596078, 0.596078, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2ln03")
+button_pressed = true
 text = "FXAA"
 
 [node name="Control" type="Control" parent="UI/MainMenu/PanelContainer/Settings"]
@@ -1270,7 +1259,6 @@ text = "FPS:"
 [connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/General/CinematicCheckBox" to="." method="_on_cinematic_check_box_pressed"]
 [connection signal="item_selected" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/GeneralQualityOptionButton" to="." method="_on_general_quality_option_button_item_selected"]
 [connection signal="item_selected" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/MSAAOptionButton" to="." method="_on_msaa_option_button_item_selected"]
-[connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/GICheckbox" to="." method="_on_gi_checkbox_pressed"]
 [connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/VolumentricFogCheckbox" to="." method="_on_volumentric_fog_checkbox_pressed"]
 [connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/TemporalButton" to="." method="_on_temporal_button_pressed"]
 [connection signal="value_changed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/RenderResolutionSlider" to="." method="_on_render_resolution_slider_value_changed"]

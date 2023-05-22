@@ -245,8 +245,6 @@ func _on_credits_button_pressed():
 
 func _on_gi_checkbox_pressed():
 	$WorldEnvironment.environment.ssil_enabled = %GICheckbox.button_pressed
-	$WorldEnvironment.environment.sdfgi_enabled = %GICheckbox.button_pressed
-
 
 
 func _on_wishlist_button_pressed():
