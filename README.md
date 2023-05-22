@@ -1,7 +1,7 @@
 # Desert Light - A Godot 4 demo
 This is a short demo and test for the Global Illumination (SDFGI), Indirect Lighting (SSIL) and Volumentric Fog.
 
-[![Video Link](http://img.youtube.com/vi/LR6Rjx0hAI/0.jpg)](http://www.youtube.com/watch?v=LR6Rjx0hAI "Preview Video")
+[![Video Link](http://img.youtube.com/vi/-LR6Rjx0hAI/0.jpg)](http://www.youtube.com/watch?v=-LR6Rjx0hAI "Preview Video")
 
 ## Controls 🎮
 <kbd>1</kbd> - Slow down Day Cycle speed
