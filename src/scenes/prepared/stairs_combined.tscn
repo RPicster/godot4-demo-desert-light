@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvxbmq3qrso4d" path="res://scenes/base/stairs/temple_stairs_rail_2.tscn" id="4_ub6mb"]
 [ext_resource type="PackedScene" uid="uid://chhpe1aert3ed" path="res://scenes/base/stairs/temple_stairs_rail_1.tscn" id="5_rc8x5"]
 [ext_resource type="PackedScene" uid="uid://dk86yxikoeimc" path="res://scenes/base/stairs/temple_stairs_rail_end.tscn" id="6_nt8jl"]
-[ext_resource type="PackedScene" path="res://scenes/prepared/temple_torch.tscn" id="7_xx3a5"]
+[ext_resource type="PackedScene" uid="uid://bhwlkuak6rwtv" path="res://scenes/prepared/temple_torch.tscn" id="7_xx3a5"]
 [ext_resource type="PackedScene" uid="uid://w5vf2ewsqj7h" path="res://scenes/base/stairs/temple_stairs_rail_top.tscn" id="8_ewkle"]
 
 [node name="StairsCombined" type="Node3D"]

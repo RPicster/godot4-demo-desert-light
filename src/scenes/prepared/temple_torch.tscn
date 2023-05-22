@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://bhwlkuak6rwtv"]
+[gd_scene load_steps=25 format=3 uid="uid://bhwlkuak6rwtv"]
 
 [ext_resource type="PackedScene" uid="uid://bxv6igu4wxxwn" path="res://assets/meshes/torch.gltf" id="1_ty0ny"]
 [ext_resource type="Material" uid="uid://dc8syyfnpsbwq" path="res://assets/materials/mat_metal.tres" id="2_ijki8"]
 [ext_resource type="Script" path="res://scripts/fx_flickering_omni.gd" id="3_cxitq"]
-[ext_resource type="Texture2D" uid="uid://bq77fvux6gu4d" path="res://assets/textures/WispyNoise.png" id="4_27i2y"]
+[ext_resource type="Material" uid="uid://vl483f6q4wsf" path="res://scenes/prepared/temple_torch_fire_mat.tres" id="4_afley"]
+[ext_resource type="Material" uid="uid://ba8wgyoqh8s68" path="res://scenes/prepared/temple_torch_particle_mat.tres" id="5_eygja"]
 [ext_resource type="AudioStream" uid="uid://dk3bdxw4f1k0t" path="res://assets/audio/WhatInTheSound_Torches.mp3" id="5_o118t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7km7"]
@@ -41,106 +42,6 @@ shadow_mesh = SubResource("ArrayMesh_24ghr")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_adtda"]
 noise_type = 3
 frequency = 0.05
-
-[sub_resource type="Shader" id="Shader_42o7g"]
-code = "shader_type spatial;
-render_mode blend_add, unshaded;
-
-uniform sampler2D noise_texture : repeat_enable;
-
-uniform sampler2D texture_mask;
-uniform float emission_intensity = 2.0;
-uniform float time_scale = 3.0;
-uniform vec2 texture_scale = vec2(1.0);
-uniform float edge_softness = 0.1;
-
-varying vec3 world_coord;
-varying float world_x_dot;
-
-void vertex() {
-	mat4 mat_world = mat4(
-		
-			normalize(INV_VIEW_MATRIX[0]) * length(MODEL_MATRIX[0]),
-			normalize(INV_VIEW_MATRIX[1]) * length(MODEL_MATRIX[0]),
-			normalize(INV_VIEW_MATRIX[2]) * length(MODEL_MATRIX[2]),
-			MODEL_MATRIX[3]);
-	mat_world *= mat4(
-			vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0), 
-			vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),
-			vec4(0.0, 0.0, 1.0, 0.0),
-			vec4(0.0, 0.0, 0.0, 1.0));
-	MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
-	world_coord = (mat_world * vec4(VERTEX, 1.0)).xyz;
-	vec4 world_normal = (mat_world * vec4(NORMAL, 0.0));
-	world_x_dot =  abs(dot(normalize(world_normal.xyz), vec3(1.0, 0.0, 0.0)));
-}
-
-void fragment() {
-	float mask = texture(texture_mask, UV).r;
-	vec2 time_based_pan = vec2(0.2, 1.0) * (-TIME * time_scale);
-	float noise_xy = texture(noise_texture, world_coord.xy * texture_scale + time_based_pan).r;
-	float noise_zy = texture(noise_texture, 
-			world_coord.zy * texture_scale + time_based_pan + vec2(0.7, 0.3)).r;
-	float noise = mix(noise_xy, noise_zy, clamp(world_x_dot, 0.0, 1.0));
-	ALBEDO = COLOR.rgb;
-	ALBEDO -= FOG.rgb;
-	float alpha = noise * mask;
-	alpha += COLOR.a - 1.0;
-	alpha = clamp(alpha, 0.0, 1.0);
-	
-	ALBEDO = clamp(ALBEDO-abs(1.0-smoothstep(0.0, edge_softness, alpha)), 0.0, 1.0);
-}"
-
-[sub_resource type="Gradient" id="Gradient_4ty2c"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_717dp"]
-gradient = SubResource("Gradient_4ty2c")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e0ok"]
-render_priority = 0
-shader = SubResource("Shader_42o7g")
-shader_parameter/emission_intensity = 1.0
-shader_parameter/time_scale = 2.0
-shader_parameter/texture_scale = Vector2(0.7, 0.7)
-shader_parameter/edge_softness = 0.161
-shader_parameter/noise_texture = ExtResource("4_27i2y")
-shader_parameter/texture_mask = SubResource("GradientTexture2D_717dp")
-
-[sub_resource type="Gradient" id="Gradient_pspmx"]
-offsets = PackedFloat32Array(0, 0.018797, 0.0639098, 0.101504, 0.18797, 0.25188, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0.0385834, 0.87, 1, 0.2, 0.54, 2.97, 1, 0.228632, 0.135685, 0.46, 1, 0.0863333, 0.059, 0.1, 1, 0.02, 0.016, 0.0163333, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ia8bn"]
-gradient = SubResource("Gradient_pspmx")
-
-[sub_resource type="Curve" id="Curve_6h67j"]
-_data = [Vector2(0.037037, 1), 0.0, -3.15, 0, 0, Vector2(0.417508, 0.327273), -0.771429, -0.771429, 0, 0, Vector2(1, 0.145455), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_kiyyi"]
-curve = SubResource("Curve_6h67j")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gpb8p"]
-lifetime_randomness = 0.3
-direction = Vector3(0, 1, 0)
-spread = 0.0
-gravity = Vector3(0, 10, -10)
-initial_velocity_min = 0.5
-initial_velocity_max = 1.0
-damping_min = 0.2
-damping_max = 0.5
-scale_min = 0.2
-scale_max = 0.8
-scale_curve = SubResource("CurveTexture_kiyyi")
-color_ramp = SubResource("GradientTexture1D_ia8bn")
-turbulence_enabled = true
-turbulence_noise_scale = 0.31
-turbulence_noise_speed = Vector3(0.2, 0.2, 0.2)
-turbulence_noise_speed_random = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_ckek7"]
 
@@ -324,10 +225,12 @@ size = Vector2(3, 3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96053, 0)
 visible = false
 material_override = ExtResource("2_ijki8")
+gi_mode = 0
 
 [node name="Torch2" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99222, 0)
 material_override = ExtResource("2_ijki8")
+gi_mode = 0
 mesh = SubResource("ArrayMesh_edg6h")
 skeleton = NodePath("")
 
@@ -341,8 +244,7 @@ shadow_bias = 0.01
 shadow_normal_bias = 4.597
 shadow_blur = 0.318
 distance_fade_length = 0.0
-omni_range = 10.0
-omni_shadow_mode = 0
+omni_range = 7.0
 script = ExtResource("3_cxitq")
 noise = SubResource("FastNoiseLite_adtda")
 noise_speed = 60.0
@@ -350,10 +252,10 @@ noise_power = 3.0
 base_light_power = 7.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="TorchOmniLight" index="0"]
-material_override = SubResource("ShaderMaterial_7e0ok")
+material_override = ExtResource("4_afley")
 amount = 200
 lifetime = 3.0
-process_material = SubResource("ParticleProcessMaterial_gpb8p")
+process_material = ExtResource("5_eygja")
 draw_pass_1 = SubResource("QuadMesh_ckek7")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="TorchOmniLight" index="1"]

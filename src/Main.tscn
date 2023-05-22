@@ -1,11 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://dtdv4se427gmh"]
+[gd_scene load_steps=40 format=3 uid="uid://dtdv4se427gmh"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2gqxl"]
 [ext_resource type="Environment" uid="uid://cfk37fm4ah0d3" path="res://assets/resources/raffa_environment.tres" id="2_dhjut"]
 [ext_resource type="PackedScene" uid="uid://bjruigidscd15" path="res://scenes/DesertCaveScene.tscn" id="3_jw8rf"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://scenes/Player/Player.tscn" id="4_hhijd"]
 [ext_resource type="VoxelGIData" uid="uid://0katqpbej48n" path="res://baked/voxel_gi_bake.tres" id="5_p2mn1"]
-[ext_resource type="ArrayOccluder3D" uid="uid://clwf7dhpofbee" path="res://baked/OccludersMain.occ" id="6_5xsna"]
 [ext_resource type="AudioStream" uid="uid://tw6e63fufm2q" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_drones.mp3" id="6_ai0gb"]
 [ext_resource type="AudioStream" uid="uid://djr485yl6haam" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_chimes.mp3" id="7_58uim"]
 [ext_resource type="AudioStream" uid="uid://btv1xaedtyl6u" path="res://assets/audio/WhatInTheSound_Wind.mp3" id="8_6v0mo"]
@@ -572,11 +571,6 @@ visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
 process_material = SubResource("ParticleProcessMaterial_bvwt3")
 draw_pass_1 = SubResource("QuadMesh_w2ma6")
 
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Scenery"]
-visible = false
-occluder = ExtResource("6_5xsna")
-bake_simplification_distance = 0.5
-
 [node name="Audio" type="Node3D" parent="."]
 
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
@@ -621,7 +615,7 @@ libraries = {
 
 [node name="CinematicCam" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.988483, 0.0669846, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
+transform = Transform3D(0.988483, 0.0669845, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
 current = true
 fov = 70.0
 far = 400.0
@@ -634,6 +628,39 @@ libraries = {
 }
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BlackBarTop" type="ColorRect" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(21, 9)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BlackBarBottom" type="ColorRect" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(21, 9)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="MarginContainer" parent="UI"]
 unique_name_in_owner = true
@@ -663,10 +690,20 @@ theme_override_font_sizes/font_size = 30
 text = "Desert Light"
 horizontal_alignment = 1
 
+[node name="HSeparator" type="HSeparator" parent="UI/MainMenu/PanelContainer/UI"]
+layout_mode = 2
+
+[node name="ByRaffaLabel2" type="Label" parent="UI/MainMenu/PanelContainer/UI"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.329412, 0.329412, 0.329412, 1)
+theme_override_font_sizes/font_size = 11
+text = "v1.0.2"
+horizontal_alignment = 1
+
 [node name="ByRaffaLabel" type="Label" parent="UI/MainMenu/PanelContainer/UI"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
-text = "A Godot 4 Demo by Raffaele Picca
+text = "Godot 4 Demo by Raffaele Picca
 Music by Paolo Dollorenzo"
 horizontal_alignment = 1
 
@@ -1185,39 +1222,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Close Settings"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="BlackBarTop" type="ColorRect" parent="UI/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(21, 9)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Control" type="Control" parent="UI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="BlackBarBottom" type="ColorRect" parent="UI/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(21, 9)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
 
 [node name="DayCycleLabel" type="Label" parent="UI"]
 unique_name_in_owner = true
