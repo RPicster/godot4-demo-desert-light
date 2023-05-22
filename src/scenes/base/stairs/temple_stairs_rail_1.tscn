@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://chhpe1aert3ed"]
+
+[ext_resource type="PackedScene" uid="uid://2mqes287tmwm" path="res://assets/meshes/temple_stairs_rail_1.gltf" id="1_jat31"]
+[ext_resource type="Material" uid="uid://b1j826thlvcx7" path="res://assets/materials/mat_temple.tres" id="2_3lo8p"]
+
+[node name="temple_stairs_rail_1" instance=ExtResource("1_jat31")]
+
+[node name="Temple_Stairs_Rail_1" parent="." index="0"]
+material_override = ExtResource("2_3lo8p")

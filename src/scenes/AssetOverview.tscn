@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://c28p73ilgshuq"]
+
+[ext_resource type="Material" uid="uid://cpkcergylk2fp" path="res://assets/materials/mat_sand.tres" id="1_3co35"]
+[ext_resource type="PackedScene" uid="uid://dabale7tnn5cp" path="res://scenes/prepared/tiles_combined_mid_section.tscn" id="3_5hwsq"]
+[ext_resource type="PackedScene" uid="uid://b5tvgrv70krpk" path="res://scenes/prepared/temple_pillar_full.tscn" id="3_s10wa"]
+[ext_resource type="PackedScene" uid="uid://bmkr6g26ix3ow" path="res://scenes/base/rocks/rock_big.tscn" id="4_23qne"]
+[ext_resource type="PackedScene" uid="uid://bc1l4deuw25a0" path="res://scenes/base/rocks/rock_small.tscn" id="5_71xhb"]
+[ext_resource type="PackedScene" uid="uid://1qd2gu5g2bws" path="res://scenes/prepared/stairs_combined.tscn" id="6_gyb1k"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8cc8m"]
+size = Vector2(400, 400)
+
+[sub_resource type="Gradient" id="Gradient_qn2tb"]
+offsets = PackedFloat32Array(0, 0.145299, 0.853933, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0196, 0.09786, 0.14, 1, 0.95, 0.937808, 0.8455, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7262i"]
+gradient = SubResource("Gradient_qn2tb")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yjc35"]
+
+[sub_resource type="Sky" id="Sky_p5r50"]
+sky_material = SubResource("ProceduralSkyMaterial_yjc35")
+
+[sub_resource type="Environment" id="Environment_xarqd"]
+background_mode = 2
+sky = SubResource("Sky_p5r50")
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 0.35
+ssao_enabled = true
+ssao_radius = 0.86
+ssao_intensity = 5.0
+ssao_horizon = 0.25
+ssao_light_affect = 0.65
+ssao_ao_channel_affect = 1.0
+ssil_enabled = true
+ssil_radius = 1.0
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 1.0
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.0183105
+sdfgi_energy = 2.0
+glow_enabled = true
+glow_levels/1 = 0.5
+glow_levels/2 = 0.5
+glow_levels/3 = 0.3
+glow_levels/4 = 1.0
+glow_levels/6 = 0.5
+glow_normalized = true
+glow_intensity = 0.1
+glow_bloom = 0.3
+glow_blend_mode = 0
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 0.0
+fog_sky_affect = 0.0
+fog_height = 2.0
+fog_height_density = 0.005
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(1, 0.85098, 0.662745, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 0.5
+adjustment_enabled = true
+adjustment_saturation = 1.05
+adjustment_color_correction = SubResource("GradientTexture1D_7262i")
+
+[node name="AssetOverview" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_3co35")
+mesh = SubResource("PlaneMesh_8cc8m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xarqd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.70137, -0.615796, 0.358992, 0, 0.503638, 0.863915, -0.712798, 0.605924, -0.353237, 0, 2.42288, 0)
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_blur = 0.5
+directional_shadow_max_distance = 300.0
+
+[node name="TemplePillar" parent="." instance=ExtResource("3_s10wa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532819, 0)
+
+[node name="TilesCombinedMidSection" parent="." instance=ExtResource("3_5hwsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.49235, 0, 3.16906)
+
+[node name="rock_big" parent="." instance=ExtResource("4_23qne")]
+transform = Transform3D(0.255749, 0, -0.966743, 0, 1, 0, 0.966743, 0, 0.255749, 13.195, 4.45764, -14.2737)
+
+[node name="rock_small" parent="." instance=ExtResource("5_71xhb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2799, 5.49631, 2.88268)
+
+[node name="StairsCombined" parent="." instance=ExtResource("6_gyb1k")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.75406, 3.46775, 5.87488)

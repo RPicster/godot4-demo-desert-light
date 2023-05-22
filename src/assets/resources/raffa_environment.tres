@@ -1,0 +1,68 @@
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://cfk37fm4ah0d3"]
+
+[sub_resource type="Gradient" id="Gradient_qn2tb"]
+offsets = PackedFloat32Array(0, 0.145299, 0.853933, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0196, 0.09786, 0.14, 1, 0.95, 0.937808, 0.8455, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7262i"]
+gradient = SubResource("Gradient_qn2tb")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yjc35"]
+sky_top_color = Color(0.588235, 0.847059, 1, 1)
+sky_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
+ground_bottom_color = Color(0.517647, 0.439216, 0.345098, 1)
+ground_horizon_color = Color(0.670588, 0.662745, 0.580392, 1)
+sun_angle_max = 266.58
+
+[sub_resource type="Sky" id="Sky_p5r50"]
+sky_material = SubResource("ProceduralSkyMaterial_yjc35")
+
+[resource]
+background_mode = 2
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_p5r50")
+ambient_light_source = 1
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 0.35
+tonemap_white = 8.0
+ssao_enabled = true
+ssao_radius = 0.86
+ssao_intensity = 20.0
+ssao_horizon = 0.58
+ssao_light_affect = 0.65
+ssao_ao_channel_affect = 1.0
+ssil_enabled = true
+ssil_radius = 1.0
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 1.0
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.0125
+glow_enabled = true
+glow_levels/1 = 0.5
+glow_levels/2 = 0.5
+glow_levels/3 = 0.3
+glow_levels/4 = 1.0
+glow_levels/6 = 0.5
+glow_normalized = true
+glow_intensity = 0.1
+glow_bloom = 0.3
+glow_blend_mode = 0
+fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 0.0
+fog_sky_affect = 0.0
+fog_height = 2.0
+fog_height_density = 0.005
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.022
+volumetric_fog_albedo = Color(1, 0.827451, 0.752941, 1)
+volumetric_fog_emission = Color(0, 1, 0.886275, 1)
+volumetric_fog_emission_energy = 0.07
+volumetric_fog_gi_inject = 0.8
+volumetric_fog_anisotropy = 0.1
+adjustment_enabled = true
+adjustment_saturation = 1.02
+adjustment_color_correction = SubResource("GradientTexture1D_7262i")

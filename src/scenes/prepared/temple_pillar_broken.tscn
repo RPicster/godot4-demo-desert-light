@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfu10364mn16b"]
+
+[ext_resource type="PackedScene" uid="uid://dnwbkra1eatlv" path="res://scenes/base/temple_pillars/temple_pillar_bottom.tscn" id="1_fbt72"]
+[ext_resource type="PackedScene" uid="uid://dgl0sx13yr3km" path="res://scenes/base/temple_pillars/temple_pillar_stone.tscn" id="2_myahv"]
+[ext_resource type="Material" uid="uid://b1j826thlvcx7" path="res://assets/materials/mat_temple.tres" id="3_igd1r"]
+[ext_resource type="PackedScene" uid="uid://bgnxaliul0eyn" path="res://scenes/base/temple_pillars/temple_pillar_end_broken.tscn" id="4_7n04i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5dahi"]
+size = Vector3(1.95, 0.5, 1.95)
+
+[node name="TemplePillarBroken" type="Node3D"]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -1.32751, 0.208732, 5.36796)
+
+[node name="temple_pillar_bottom" parent="." instance=ExtResource("1_fbt72")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="temple_pillar_stone" parent="." instance=ExtResource("2_myahv")]
+transform = Transform3D(0.999616, 0, -0.0276948, 0, 1, 0, 0.0276948, 0, 0.999616, 0, 2.00851, 0)
+
+[node name="lightblocker" type="MeshInstance3D" parent="temple_pillar_stone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49401, 0)
+material_override = ExtResource("3_igd1r")
+mesh = SubResource("BoxMesh_5dahi")
+skeleton = NodePath("../..")
+
+[node name="temple_pillar_stone2" parent="." instance=ExtResource("2_myahv")]
+transform = Transform3D(0.0417013, 0, -0.99913, 0, 1, 0, 0.99913, 0, 0.0417013, 0, 5.0224, 0)
+
+[node name="lightblocker" type="MeshInstance3D" parent="temple_pillar_stone2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49401, 0)
+material_override = ExtResource("3_igd1r")
+mesh = SubResource("BoxMesh_5dahi")
+skeleton = NodePath("../..")
+
+[node name="temple_pillar_stone3" parent="." instance=ExtResource("2_myahv")]
+transform = Transform3D(-0.999717, 0, -0.0237692, 0, 1, 0, 0.0237692, 0, -0.999717, 0.033092, 8.04116, 0)
+
+[node name="lightblocker" type="MeshInstance3D" parent="temple_pillar_stone3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49401, 0)
+material_override = ExtResource("3_igd1r")
+mesh = SubResource("BoxMesh_5dahi")
+skeleton = NodePath("../..")
+
+[node name="lightblocker2" type="MeshInstance3D" parent="temple_pillar_stone3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43851, 0)
+material_override = ExtResource("3_igd1r")
+mesh = SubResource("BoxMesh_5dahi")
+skeleton = NodePath("../..")
+
+[node name="temple_pillar_end_broken" parent="." instance=ExtResource("4_7n04i")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 10.6919, 0.0343363)

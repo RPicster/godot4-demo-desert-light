@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://lqyku5wn2wo0"]
+
+[ext_resource type="Script" path="res://scenes/Player/MovementController.gd" id="1_gvge5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
+
+[node name="MovementController" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+floor_block_on_wall = false
+floor_snap_length = 0.5
+script = ExtResource("1_gvge5")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fn1rj")

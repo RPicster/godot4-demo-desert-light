@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvutajdsd780m"]
+
+[ext_resource type="PackedScene" uid="uid://bywvigybg5ny7" path="res://assets/meshes/temple_door.gltf" id="1_pxamb"]
+[ext_resource type="Material" uid="uid://dc8syyfnpsbwq" path="res://assets/materials/mat_metal.tres" id="2_hhjv5"]
+[ext_resource type="Material" uid="uid://bqm73egw6whwh" path="res://assets/materials/mat_wood.tres" id="3_iujlp"]
+
+[node name="temple_door" instance=ExtResource("1_pxamb")]
+
+[node name="Temple_Door" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_hhjv5")
+surface_material_override/1 = ExtResource("3_iujlp")

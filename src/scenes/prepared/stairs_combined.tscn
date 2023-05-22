@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://1qd2gu5g2bws"]
+
+[ext_resource type="PackedScene" uid="uid://7ffcufm7droq" path="res://scenes/base/stairs/temple_stairs_1.tscn" id="1_ncp64"]
+[ext_resource type="PackedScene" uid="uid://c4ff6x711ch7t" path="res://scenes/base/stairs/temple_stairs_2.tscn" id="2_7awam"]
+[ext_resource type="PackedScene" uid="uid://dhom1ovgxsd3b" path="res://scenes/base/stairs/temple_stairs_3.tscn" id="3_x1oj4"]
+[ext_resource type="PackedScene" uid="uid://cvxbmq3qrso4d" path="res://scenes/base/stairs/temple_stairs_rail_2.tscn" id="4_ub6mb"]
+[ext_resource type="PackedScene" uid="uid://chhpe1aert3ed" path="res://scenes/base/stairs/temple_stairs_rail_1.tscn" id="5_rc8x5"]
+[ext_resource type="PackedScene" uid="uid://dk86yxikoeimc" path="res://scenes/base/stairs/temple_stairs_rail_end.tscn" id="6_nt8jl"]
+[ext_resource type="PackedScene" path="res://scenes/prepared/temple_torch.tscn" id="7_xx3a5"]
+[ext_resource type="PackedScene" uid="uid://w5vf2ewsqj7h" path="res://scenes/base/stairs/temple_stairs_rail_top.tscn" id="8_ewkle"]
+
+[node name="StairsCombined" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.35144, 0, 13.9101)
+
+[node name="temple_stairs_1" parent="." instance=ExtResource("1_ncp64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76092, -6.17327, 5.28813)
+
+[node name="temple_stairs_2" parent="." instance=ExtResource("2_7awam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76092, -3.8595, -0.549526)
+
+[node name="temple_stairs_3" parent="." instance=ExtResource("3_x1oj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76092, -1.14642, -7.68965)
+
+[node name="temple_stairs_rail_1_right" parent="." instance=ExtResource("4_ub6mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24925, -3.11263, -4.70638)
+
+[node name="temple_stairs_rail_2_right" parent="." instance=ExtResource("5_rc8x5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24925, -4.10936, 0.346014)
+
+[node name="temple_stairs_rail_end_right" parent="." instance=ExtResource("6_nt8jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24925, -5.2945, 6.68537)
+
+[node name="Torch" parent="temple_stairs_rail_end_right" instance=ExtResource("7_xx3a5")]
+transform = Transform3D(0.99999, -0.00438076, 0, 0.00438076, 0.99999, 0, 0, 0, 1, 0.0557251, 0.928315, 2.5106)
+
+[node name="temple_stairs_rail_top_right" parent="." instance=ExtResource("8_ewkle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24925, -2.75644, -11.0156)
+
+[node name="Torch" parent="temple_stairs_rail_top_right" instance=ExtResource("7_xx3a5")]
+transform = Transform3D(0.999799, -0.0200699, 0, 0.0200699, 0.999799, 0, 0, 0, 1, 0.0915794, 5.03021, -2.71988)
+
+[node name="temple_stairs_rail_1_left" parent="." instance=ExtResource("5_rc8x5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0288, -1.98418, -4.87032)
+
+[node name="temple_stairs_rail_2_left" parent="." instance=ExtResource("4_ub6mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6052, -5.02467, 0.0888557)
+
+[node name="temple_stairs_rail_end_left" parent="." instance=ExtResource("6_nt8jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9554, -5.2945, 6.55287)
+
+[node name="Torch" parent="temple_stairs_rail_end_left" instance=ExtResource("7_xx3a5")]
+transform = Transform3D(0.999651, -0.0264212, 0, 0.0264212, 0.999651, 0, 0, 0, 1, 0.00967312, 0.90339, 2.51505)
+
+[node name="temple_stairs_rail_top_left" parent="." instance=ExtResource("8_ewkle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9554, -2.75644, -11.0681)
+
+[node name="Torch" parent="temple_stairs_rail_top_left" instance=ExtResource("7_xx3a5")]
+transform = Transform3D(0.999159, 0.0410037, 0, -0.0410037, 0.999159, 0, 0, 0, 1, 0, 5.03021, -2.71902)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.76958, -9.6, 11.948)
+depth = 15.5
+polygon = PackedVector2Array(-4, 0, 20, 10, 24, 10, 30, 8, 30, 0)
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.21996, -7.79628, 11.948)
+depth = 2.6
+polygon = PackedVector2Array(1.4, 3.5, 4, 3.5, 21, 10, 27, 10, 27, 0, 1.4, 0)
+
+[node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.7788, -7.79628, 11.948)
+depth = 2.6
+polygon = PackedVector2Array(1.4, 3.5, 4, 3.5, 21, 10, 27, 10, 27, 0, 1.4, 0)

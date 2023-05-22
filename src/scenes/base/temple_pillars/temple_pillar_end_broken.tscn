@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgnxaliul0eyn"]
+
+[ext_resource type="PackedScene" uid="uid://trv7iolue58a" path="res://assets/meshes/temple_pillar_end_broken.gltf" id="1_sre22"]
+[ext_resource type="Material" uid="uid://b1j826thlvcx7" path="res://assets/materials/mat_temple.tres" id="2_ethy1"]
+
+[node name="temple_pillar_end_broken" instance=ExtResource("1_sre22")]
+
+[node name="Temple_Pillar_End_Broken" parent="." index="0"]
+material_override = ExtResource("2_ethy1")

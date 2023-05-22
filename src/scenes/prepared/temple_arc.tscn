@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8ngey6uofnr7"]
+
+[ext_resource type="PackedScene" uid="uid://dc2kquulamku3" path="res://scenes/base/temple_pillars/templearc_bottom.tscn" id="1_h15a8"]
+[ext_resource type="PackedScene" uid="uid://b0xla4yqjccpa" path="res://scenes/base/temple_pillars/templearc_piece_1.tscn" id="2_5jsgv"]
+[ext_resource type="PackedScene" uid="uid://df73pdsg4ph23" path="res://scenes/base/temple_pillars/templearc_piece_2.tscn" id="3_lxd4p"]
+[ext_resource type="PackedScene" uid="uid://oxp303ddd6nh" path="res://scenes/base/temple_pillars/templearc_side_1.tscn" id="4_tnbnb"]
+[ext_resource type="PackedScene" uid="uid://bsw62xybafr5w" path="res://scenes/base/temple_pillars/templearc_side_2.tscn" id="5_k62yn"]
+[ext_resource type="PackedScene" uid="uid://bqn01vvlql12f" path="res://scenes/base/temple_pillars/templearc_top.tscn" id="6_oeg1v"]
+
+[node name="TempleArc" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.26772, 3.66917, -17.6024)
+
+[node name="templearc_bottom" parent="." instance=ExtResource("1_h15a8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98896, 0, 0)
+
+[node name="templearc_bottom2" parent="." instance=ExtResource("1_h15a8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.50245, 0, 0)
+
+[node name="templearc_piece1" parent="." instance=ExtResource("2_5jsgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95374, 15.7115, 0)
+
+[node name="templearc_piece2" parent="." instance=ExtResource("3_lxd4p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.53987, 15.6862, 0)
+
+[node name="templearc_side1" parent="." instance=ExtResource("4_tnbnb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95374, 7.16307, 0)
+
+[node name="templearc_side2" parent="." instance=ExtResource("5_k62yn")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.53987, 7.16307, 0)
+
+[node name="templearc_top" parent="." instance=ExtResource("6_oeg1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.302873, 22.6616, 0)

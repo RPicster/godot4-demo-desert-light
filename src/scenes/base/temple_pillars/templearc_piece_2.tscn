@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://df73pdsg4ph23"]
+
+[ext_resource type="PackedScene" uid="uid://bjk3dkp62gsyj" path="res://assets/meshes/templearc_piece2.gltf" id="1_gsw6m"]
+[ext_resource type="Material" uid="uid://b1j826thlvcx7" path="res://assets/materials/mat_temple.tres" id="2_k6xvt"]
+
+[node name="templearc_piece2" instance=ExtResource("1_gsw6m")]
+
+[node name="TempleArc_Piece2" parent="." index="0"]
+material_override = ExtResource("2_k6xvt")
