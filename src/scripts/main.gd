@@ -76,6 +76,7 @@ func show_menu(_show:bool):
 		%Credits.hide()
 		%Settings.hide()
 		%MainMenu.show()
+		%ResumeButton.grab_focus()
 		if menu_tween:
 			menu_tween.kill()
 		menu_tween = get_tree().create_tween()
@@ -94,8 +95,8 @@ func _on_mode_switch_button_pressed():
 		if black_bar_tween:
 			black_bar_tween.kill()
 		black_bar_tween = get_tree().create_tween()
-		black_bar_tween.tween_property(%BlackBarTop, "position:y", -140, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-		black_bar_tween.parallel().tween_property(%BlackBarBottom, "position:y", 940+140, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+		black_bar_tween.tween_property(%BlackBarTop, "modulate:a", 0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+		black_bar_tween.parallel().tween_property(%BlackBarBottom, "modulate:a", 0, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 		black_bar_tween.parallel().tween_property($WorldEnvironment.environment, "adjustment_brightness", 0, 0.2)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		black_bar_tween.parallel().tween_callback(to_player).set_delay(0.2)
@@ -107,8 +108,8 @@ func _on_mode_switch_button_pressed():
 		if black_bar_tween:
 			black_bar_tween.kill()
 		black_bar_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-		black_bar_tween.tween_property(%BlackBarTop, "position:y", 0, 0.4)
-		black_bar_tween.parallel().tween_property(%BlackBarBottom, "position:y", 940, 0.4)
+		black_bar_tween.tween_property(%BlackBarTop, "modulate:a", 1, 0.4)
+		black_bar_tween.parallel().tween_property(%BlackBarBottom, "modulate:a", 1, 0.4)
 		black_bar_tween.parallel().tween_property($WorldEnvironment.environment, "adjustment_brightness", 0, 0.2)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		black_bar_tween.parallel().tween_callback(to_cinematic).set_delay(0.2)
@@ -214,21 +215,25 @@ func _on_general_quality_option_button_item_selected(index):
 func _on_settings_button_pressed():
 	%UI.hide()
 	%Settings.show()
+	%WFullScreenCheckBox.grab_focus()
 
 
 func _on_close_settings_button_pressed():
 	%UI.show()
 	%Settings.hide()
+	%ResumeButton.grab_focus()
 
 
 func _on_close_credits_button_pressed():
 	%UI.show()
 	%Credits.hide()
+	%ResumeButton.grab_focus()
 
 
 func _on_credits_button_pressed():
 	%UI.hide()
 	%Credits.show()
+	%CloseCreditsButton.grab_focus()
 
 
 func _on_gi_checkbox_pressed():

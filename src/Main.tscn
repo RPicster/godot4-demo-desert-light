@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dtdv4se427gmh"]
+[gd_scene load_steps=40 format=3 uid="uid://dtdv4se427gmh"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2gqxl"]
 [ext_resource type="Environment" uid="uid://cfk37fm4ah0d3" path="res://assets/resources/raffa_environment.tres" id="2_dhjut"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://tw6e63fufm2q" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_drones.mp3" id="6_ai0gb"]
 [ext_resource type="AudioStream" uid="uid://djr485yl6haam" path="res://assets/audio/Paolo_Dollorenzo-Desert_Light_chimes.mp3" id="7_58uim"]
 [ext_resource type="AudioStream" uid="uid://btv1xaedtyl6u" path="res://assets/audio/WhatInTheSound_Wind.mp3" id="8_6v0mo"]
+[ext_resource type="Theme" uid="uid://bwkgdwgpi80ja" path="res://theme.tres" id="9_5jyt5"]
 [ext_resource type="Texture2D" uid="uid://wo8i8o3dwyol" path="res://assets/textures/icon_color_outline.svg" id="9_7vd1l"]
 
 [sub_resource type="Gradient" id="Gradient_kyrfs"]
@@ -635,6 +636,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_5jyt5")
 theme_override_constants/margin_right = 40
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/MainMenu"]
@@ -646,7 +648,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jbf7m")
 
 [node name="UI" type="VBoxContainer" parent="UI/MainMenu/PanelContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="HeaderLabel" type="Label" parent="UI/MainMenu/PanelContainer/UI"]
@@ -808,6 +809,7 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="ResumeButton" type="Button" parent="UI/MainMenu/PanelContainer/UI"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
@@ -847,6 +849,7 @@ text = "Quit to Desktop"
 
 [node name="Credits" type="VBoxContainer" parent="UI/MainMenu/PanelContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 
@@ -968,6 +971,7 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="CloseCreditsButton" type="Button" parent="UI/MainMenu/PanelContainer/Credits"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back to Main Menu"
@@ -1113,7 +1117,6 @@ theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2ln03")
 button_pressed = true
 text = "Indirect Illum. (SSIL + SDFGI)"
 
@@ -1127,7 +1130,6 @@ theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2ln03")
 button_pressed = true
 text = "Volumetric Fog"
 
@@ -1141,7 +1143,6 @@ theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2ln03")
 text = "Temporal Anti-Aliasing"
 
 [node name="RenderResolutionLabel" type="Label" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]
@@ -1179,31 +1180,37 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Close Settings"
 
-[node name="BlackBarTop" type="ColorRect" parent="UI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BlackBarTop" type="ColorRect" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(21, 9)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -960.0
-offset_right = 960.0
-offset_bottom = 140.0
-grow_horizontal = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="BlackBarBottom" type="ColorRect" parent="UI"]
+[node name="Control" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BlackBarBottom" type="ColorRect" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(21, 9)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -960.0
-offset_top = -140.0
-offset_right = 960.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="DayCycleLabel" type="Label" parent="UI"]
