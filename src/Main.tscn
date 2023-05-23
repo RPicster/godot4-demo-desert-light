@@ -626,7 +626,7 @@ libraries = {
 
 [node name="CinematicCam" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.988483, 0.0669845, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
+transform = Transform3D(0.988483, 0.0669846, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
 current = true
 fov = 70.0
 far = 400.0
@@ -708,7 +708,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.329412, 0.329412, 0.329412, 1)
 theme_override_font_sizes/font_size = 11
-text = "v1.0.4"
+text = "v1.0.5"
 horizontal_alignment = 1
 
 [node name="ByRaffaLabel" type="Label" parent="UI/MainMenu/PanelContainer/UI"]
