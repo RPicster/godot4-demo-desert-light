@@ -243,10 +243,6 @@ func _on_credits_button_pressed():
 	%CloseCreditsButton.grab_focus()
 
 
-func _on_gi_checkbox_pressed():
-	$WorldEnvironment.environment.ssil_enabled = %GICheckbox.button_pressed
-
-
 func _on_wishlist_button_pressed():
 	OS.shell_open("https://store.steampowered.com/app/1513960/FRANZ_FURY/")
 
@@ -260,3 +256,7 @@ func _on_volumentric_fog_checkbox_pressed():
 func _on_v_sync_enable_check_box_pressed():
 	var vsync_mode = DisplayServer.VSYNC_DISABLED if not %VSyncEnableCheckBox.button_pressed else DisplayServer.VSYNC_ENABLED
 	DisplayServer.window_set_vsync_mode(vsync_mode)
+
+
+func _on_ssao_checkbox_pressed():
+	$WorldEnvironment.environment.ssao_enabled = %SSAOCheckbox.button_pressed

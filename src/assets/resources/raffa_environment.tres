@@ -33,7 +33,6 @@ ssao_intensity = 10.0
 ssao_horizon = 0.58
 ssao_light_affect = 0.65
 ssao_ao_channel_affect = 1.0
-ssil_enabled = true
 ssil_radius = 1.22
 sdfgi_bounce_feedback = 1.5
 sdfgi_min_cell_size = 0.1

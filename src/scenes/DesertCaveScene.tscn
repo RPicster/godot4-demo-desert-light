@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bjruigidscd15"]
+[gd_scene load_steps=42 format=3 uid="uid://bjruigidscd15"]
 
 [ext_resource type="PackedScene" uid="uid://1qd2gu5g2bws" path="res://scenes/prepared/stairs_combined.tscn" id="6_ia0hk"]
 [ext_resource type="PackedScene" uid="uid://dabale7tnn5cp" path="res://scenes/prepared/tiles_combined_mid_section.tscn" id="7_kcw2y"]
@@ -32,6 +32,9 @@ size = Vector3(3, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6x6td"]
 size = Vector3(5, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r8fx4"]
+size = Vector3(1, 11.916, 9.601)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugqdu"]
 
@@ -668,6 +671,14 @@ shape = SubResource("BoxShape3D_6x6td")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Temple/Entrance/GateBody"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.469248, 4.31843, -11.6894)
 shape = SubResource("BoxShape3D_6x6td")
+
+[node name="LightLeakBlocker" type="MeshInstance3D" parent="Temple/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30773, 5.33459, -0.463348)
+mesh = SubResource("BoxMesh_r8fx4")
+
+[node name="LightLeakBlocker2" type="MeshInstance3D" parent="Temple/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9428, 5.33459, -0.463348)
+mesh = SubResource("BoxMesh_r8fx4")
 
 [node name="EndCap" type="MeshInstance3D" parent="Temple"]
 transform = Transform3D(3.695, 0, 0, 0, 3.695, 0, 0, 0, 3.695, 4.26274, 8.13512, -31.5556)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bhwlkuak6rwtv"]
+[gd_scene load_steps=24 format=3 uid="uid://bhwlkuak6rwtv"]
 
 [ext_resource type="PackedScene" uid="uid://bxv6igu4wxxwn" path="res://assets/meshes/torch.gltf" id="1_ty0ny"]
 [ext_resource type="Material" uid="uid://dc8syyfnpsbwq" path="res://assets/materials/mat_metal.tres" id="2_ijki8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://vl483f6q4wsf" path="res://scenes/prepared/temple_torch_fire_mat.tres" id="4_afley"]
 [ext_resource type="Material" uid="uid://ba8wgyoqh8s68" path="res://scenes/prepared/temple_torch_particle_mat.tres" id="5_eygja"]
 [ext_resource type="AudioStream" uid="uid://dk3bdxw4f1k0t" path="res://assets/audio/WhatInTheSound_Torches.mp3" id="5_o118t"]
+[ext_resource type="Texture2D" uid="uid://bi1hdrlxf8ce6" path="res://assets/textures/spotlight_2.png" id="5_ponxf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7km7"]
 
@@ -39,17 +40,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_24ghr")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_adtda"]
-noise_type = 3
-frequency = 0.05
-
 [sub_resource type="QuadMesh" id="QuadMesh_ckek7"]
 
 [sub_resource type="Shader" id="Shader_wlxbn"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.3.stable's StandardMaterial3D.
 
 shader_type spatial;
-render_mode blend_add,unshaded;
+render_mode blend_add, unshaded, cull_back;
 
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
@@ -80,15 +77,6 @@ void fragment() {
 }
 "
 
-[sub_resource type="Gradient" id="Gradient_yp26g"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qbpt6"]
-gradient = SubResource("Gradient_yp26g")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s4gs6"]
 render_priority = 0
 shader = SubResource("Shader_wlxbn")
@@ -98,7 +86,7 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_qbpt6")
+shader_parameter/texture_albedo = ExtResource("5_ponxf")
 
 [sub_resource type="Gradient" id="Gradient_clama"]
 offsets = PackedFloat32Array(0, 0.018797, 0.112782, 0.398496, 0.691729, 1)
@@ -133,10 +121,9 @@ turbulence_influence_max = 0.3
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="Shader" id="Shader_8mfi4"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.0.3.stable's StandardMaterial3D.
+code = "shader_type spatial;
+render_mode blend_add,cull_back,unshaded;
 
-shader_type spatial;
-render_mode blend_add,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
 uniform float grow;
@@ -161,11 +148,6 @@ void vertex() {
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 	VERTEX+=NORMAL*grow;
 }
-
-
-
-
-
 
 void fragment() {
 	vec2 base_uv = UV;
@@ -219,6 +201,10 @@ shader_parameter/texture_albedo = SubResource("GradientTexture2D_tc5oj")
 [sub_resource type="QuadMesh" id="QuadMesh_lp5jl"]
 size = Vector2(3, 3)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_adtda"]
+noise_type = 3
+frequency = 0.05
+
 [node name="Torch" instance=ExtResource("1_ty0ny")]
 
 [node name="Torch" parent="." index="0"]
@@ -234,44 +220,54 @@ gi_mode = 0
 mesh = SubResource("ArrayMesh_edg6h")
 skeleton = NodePath("")
 
-[node name="TorchOmniLight" type="OmniLight3D" parent="." index="2"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1402, 0)
+material_override = ExtResource("4_afley")
+cast_shadow = 0
+gi_mode = 0
+amount = 200
+lifetime = 3.0
+process_material = ExtResource("5_eygja")
+draw_pass_1 = SubResource("QuadMesh_ckek7")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0181065, 2.10925, 0)
+material_override = SubResource("ShaderMaterial_s4gs6")
+cast_shadow = 0
+gi_mode = 0
+amount = 32
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_brmhm")
+draw_pass_1 = SubResource("QuadMesh_yiwj0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1402, 0)
+material_override = SubResource("ShaderMaterial_l6gij")
+mesh = SubResource("QuadMesh_lp5jl")
+skeleton = NodePath("../TorchOmniLight")
+
+[node name="TorchOmniLight" type="OmniLight3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1402, 0)
 light_color = Color(0, 0.478431, 1, 1)
-light_volumetric_fog_energy = 2.0
-light_size = 0.171
+light_energy = 15.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 5.0
 light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 0.06
 shadow_normal_bias = 2.0
-shadow_blur = 3.0
+shadow_blur = 10.0
 distance_fade_length = 0.0
-omni_range = 7.5
+omni_range = 6.838
+omni_attenuation = 1.7411
+omni_shadow_mode = 0
 script = ExtResource("3_cxitq")
 noise = SubResource("FastNoiseLite_adtda")
 noise_speed = 60.0
 noise_power = 3.0
 base_light_power = 7.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="TorchOmniLight" index="0"]
-material_override = ExtResource("4_afley")
-amount = 200
-lifetime = 3.0
-process_material = ExtResource("5_eygja")
-draw_pass_1 = SubResource("QuadMesh_ckek7")
-
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="TorchOmniLight" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0181065, -0.0309477, 0)
-material_override = SubResource("ShaderMaterial_s4gs6")
-amount = 32
-lifetime = 3.0
-process_material = SubResource("ParticleProcessMaterial_brmhm")
-draw_pass_1 = SubResource("QuadMesh_yiwj0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TorchOmniLight" index="2"]
-material_override = SubResource("ShaderMaterial_l6gij")
-mesh = SubResource("QuadMesh_lp5jl")
-
-[node name="FireSound" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="FireSound" type="AudioStreamPlayer3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012455, 1.74941, -0.0026722)
 stream = ExtResource("5_o118t")
 volume_db = -3.0

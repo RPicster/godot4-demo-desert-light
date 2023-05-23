@@ -4,7 +4,7 @@
 
 [sub_resource type="Shader" id="Shader_42o7g"]
 code = "shader_type spatial;
-render_mode blend_add, unshaded;
+render_mode blend_add, unshaded, cull_back;
 
 uniform sampler2D noise_texture : repeat_enable;
 

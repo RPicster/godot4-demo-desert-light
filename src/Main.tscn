@@ -227,7 +227,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Scenery/DoorLights/OmniLight3D5:light_energy")
+tracks/4/path = NodePath("Scenery/DoorLights/OmniLightOutsideDoor:light_energy")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -239,7 +239,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Scenery/DoorLights/OmniLight3D6:light_energy")
+tracks/5/path = NodePath("Scenery/DoorLights/OmniLightInsideDoor:light_energy")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -329,19 +329,19 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Scenery/DoorLights/OmniLight3D5:light_energy")
+tracks/4/path = NodePath("Scenery/DoorLights/OmniLightOutsideDoor:light_energy")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 8, 19, 25),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [30.0, 6.0, 6.0, 30.0]
+"values": [2.0, 6.0, 6.0, 2.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Scenery/DoorLights/OmniLight3D6:light_energy")
+tracks/5/path = NodePath("Scenery/DoorLights/OmniLightInsideDoor:light_energy")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -549,24 +549,26 @@ data = ExtResource("5_uxp4w")
 
 [node name="DoorLights" type="Node3D" parent="Scenery"]
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="Scenery/DoorLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1329, 9.3132, -20.6909)
+[node name="OmniLightOutsideDoor" type="OmniLight3D" parent="Scenery/DoorLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34875, 9.3132, -22.5471)
 light_color = Color(0, 0.831373, 1, 1)
 light_energy = 30.0
 light_size = 0.5
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 20.0
+omni_range = 10.0
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="Scenery/DoorLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1329, 8.5567, -30.7985)
+[node name="OmniLightInsideDoor" type="OmniLight3D" parent="Scenery/DoorLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45705, 10.7077, -30.7985)
 light_color = Color(0, 0.713726, 1, 1)
 light_energy = 200.0
 light_indirect_energy = 0.05
 light_bake_mode = 1
 shadow_enabled = true
-shadow_blur = 0.1
-omni_range = 20.0
+shadow_bias = 0.038
+shadow_normal_bias = 2.817
+shadow_blur = 0.302
+omni_range = 15.0
 
 [node name="Fireflies" type="GPUParticles3D" parent="Scenery"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.88724, 11.0825, 0)
@@ -706,7 +708,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.329412, 0.329412, 0.329412, 1)
 theme_override_font_sizes/font_size = 11
-text = "v1.0.3"
+text = "v1.0.4"
 horizontal_alignment = 1
 
 [node name="ByRaffaLabel" type="Label" parent="UI/MainMenu/PanelContainer/UI"]
@@ -1159,6 +1161,19 @@ text = "MSAA"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="SSAOCheckbox" type="CheckButton" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.180392, 0.180392, 0.180392, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+button_pressed = true
+text = "SSAO"
+
 [node name="VolumentricFogCheckbox" type="CheckButton" parent="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
@@ -1267,6 +1282,7 @@ text = "FPS:"
 [connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/General/CinematicCheckBox" to="." method="_on_cinematic_check_box_pressed"]
 [connection signal="item_selected" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/GeneralQualityOptionButton" to="." method="_on_general_quality_option_button_item_selected"]
 [connection signal="item_selected" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/MSAAOptionButton" to="." method="_on_msaa_option_button_item_selected"]
+[connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/SSAOCheckbox" to="." method="_on_ssao_checkbox_pressed"]
 [connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/VolumentricFogCheckbox" to="." method="_on_volumentric_fog_checkbox_pressed"]
 [connection signal="pressed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/TemporalButton" to="." method="_on_temporal_button_pressed"]
 [connection signal="value_changed" from="UI/MainMenu/PanelContainer/Settings/HBoxContainer/Quality/RenderResolutionSlider" to="." method="_on_render_resolution_slider_value_changed"]
