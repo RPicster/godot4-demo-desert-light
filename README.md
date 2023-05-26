@@ -1,5 +1,5 @@
 # Desert Light - A Godot 4 demo
-This is a short demo and test for the Global Illumination (SDFGI), Indirect Lighting (SSIL) and Volumetric Fog.
+This is a short demo and test for the Global Illumination (Voxel Gi) and Volumetric Fog.
 
 [![Video Link](http://img.youtube.com/vi/-LR6Rjx0hAI/0.jpg)](http://www.youtube.com/watch?v=-LR6Rjx0hAI "Preview Video")
 
