@@ -129,6 +129,7 @@ speed_pause={
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 lights_and_shadows/directional_shadow/size=16384
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
@@ -142,11 +143,11 @@ anti_aliasing/screen_space_roughness_limiter/amount=0.5
 anti_aliasing/screen_space_roughness_limiter/limit=0.22
 scaling_3d/mode=1
 scaling_3d/fsr_sharpness=0.2
+occlusion_culling/occlusion_rays_per_thread=0
 global_illumination/sdfgi/probe_ray_count=2
 environment/volumetric_fog/volume_size=256
 anti_aliasing/quality/screen_space_aa=1
 anti_aliasing/quality/use_debanding=true
-lights_and_shadows/positional_shadow/atlas_size=512
 2d/sdf/scale=0
 lights_and_shadows/glow/upscale_mode.mobile=1
 lights_and_shadows/ssao/blur_passes=1

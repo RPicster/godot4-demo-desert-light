@@ -15,7 +15,7 @@
 offsets = PackedFloat32Array(0.243976, 0.478916, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.21875, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_is2p8"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r0elj"]
 gradient = SubResource("Gradient_kyrfs")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -26,7 +26,7 @@ transparency = 1
 disable_ambient_light = true
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.898039, 0.870588, 1, 0.101961)
-albedo_texture = SubResource("GradientTexture2D_is2p8")
+albedo_texture = SubResource("GradientTexture2D_r0elj")
 emission_enabled = true
 emission = Color(0.529412, 0.329412, 0.207843, 1)
 emission_energy_multiplier = 2.0
@@ -44,14 +44,14 @@ proximity_fade_distance = 10.0
 offsets = PackedFloat32Array(0, 0.704819, 1)
 colors = PackedColorArray(1, 1, 1, 0.309804, 1, 1, 1, 0.523931, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_wjipk"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qhavj"]
 gradient = SubResource("Gradient_acsdg")
 
 [sub_resource type="Gradient" id="Gradient_v83qe"]
 offsets = PackedFloat32Array(0, 0.471429, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_746p3"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m80va"]
 gradient = SubResource("Gradient_v83qe")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rtma0"]
@@ -65,8 +65,8 @@ initial_velocity_min = 0.1
 initial_velocity_max = 2.0
 scale_min = 0.7
 scale_max = 1.5
-color_ramp = SubResource("GradientTexture1D_746p3")
-color_initial_ramp = SubResource("GradientTexture1D_wjipk")
+color_ramp = SubResource("GradientTexture1D_m80va")
+color_initial_ramp = SubResource("GradientTexture1D_qhavj")
 turbulence_enabled = true
 turbulence_noise_strength = 20.0
 turbulence_noise_scale = 8.0
@@ -84,7 +84,7 @@ albedo = Color(0.396078, 0.376471, 0.27451, 1)
 height_falloff = 0.318641
 edge_fade = 0.492456
 
-[sub_resource type="Shader" id="Shader_vnis5"]
+[sub_resource type="Shader" id="Shader_ln5wl"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.3.stable's StandardMaterial3D.
 
 shader_type spatial;
@@ -122,7 +122,7 @@ void fragment() {
 [sub_resource type="Gradient" id="Gradient_majqd"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_iyliv"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6736x"]
 gradient = SubResource("Gradient_majqd")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -130,20 +130,20 @@ fill_to = Vector2(0.5, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wlj5"]
 render_priority = 0
-shader = SubResource("Shader_vnis5")
+shader = SubResource("Shader_ln5wl")
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_iyliv")
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_6736x")
 
 [sub_resource type="Gradient" id="Gradient_asiuf"]
 offsets = PackedFloat32Array(0, 0.214286, 0.5, 0.774436, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.394205, 0.297227, 0.421053, 1, 0.54, 0.678, 1, 1, 0.475314, 0.281936, 0.5125, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xspw0"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_awlat"]
 gradient = SubResource("Gradient_asiuf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bvwt3"]
@@ -162,7 +162,7 @@ damping_max = 14.0
 scale_min = 0.2
 scale_max = 0.8
 color = Color(1.14006, 2, 1.97015, 1)
-color_ramp = SubResource("GradientTexture1D_xspw0")
+color_ramp = SubResource("GradientTexture1D_awlat")
 turbulence_enabled = true
 turbulence_noise_scale = 9.44
 turbulence_noise_speed = Vector3(0.8, 0.2, 0.2)
@@ -626,7 +626,7 @@ libraries = {
 
 [node name="CinematicCam" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.988483, 0.0669846, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
+transform = Transform3D(0.988483, 0.0669845, -0.135699, -0.0697479, 0.997441, -0.0157073, 0.1343, 0.0249912, 0.990625, 1.342, 7.346, 60.423)
 current = true
 fov = 70.0
 far = 400.0
